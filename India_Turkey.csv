@@ -1,0 +1,4 @@
+Country,Origin,Port Code,Duration (days),Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
+India,Mumbai,,29,,,,,,,Bab el-Mandeb & Suez Canal,Strait of Gibraltar,UK
+Turkey,Gemlik,,7,,,,,,,Strait of Gibraltar,,UK
+Turkey,Aliaga,,7,,,,,,,Strait of Gibraltar,,UK

@@ -1,0 +1,6 @@
+Country,Origin,Port Code,Duration (days),Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
+China,Shanghai,CNSHA,35,Strait of Malacca,,,,,,Bab el-Mandeb & Suez Canal,Strait of Gibraltar,UK
+China,Shenzhen,CNSNZ,28,Strait of Malacca,,,,,,Bab el-Mandeb & Suez Canal,Strait of Gibraltar,UK
+China,Ningbo-Zhoushan,CNNBO,35,Strait of Malacca,,,,,,Bab el-Mandeb & Suez Canal,Strait of Gibraltar,UK
+China,Guangzhou,CNGGZ,28,Strait of Malacca,,,,,,Bab el-Mandeb & Suez Canal,Strait of Gibraltar,UK
+China,Qingdao,CNQIN,42,Strait of Malacca,,,,,,Bab el-Mandeb & Suez Canal,Strait of Gibraltar,UK
