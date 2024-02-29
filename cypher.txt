@@ -41,7 +41,7 @@ RETURN *
 
 ---
 #working code for Bulgaria data in Aura 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/f521fd140f4c8ef55417dc278ae5c4572acc954c/Bulgaria.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/54ab77f28c0278dc75a9c4cefae35cd863b864ce/Bulgaria.csv?raw=1' AS csvLine
 
 MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country})
 
@@ -51,10 +51,10 @@ MERGE (c2:Chokepoint {Chokepoint:csvLine.Chokepoint2})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
-MERGE (o)-[:From_Sofia]->(c1)
-MERGE (c1)-[:From_Sofia]->(s1)
-MERGE (s1)-[:From_Sofia]->(c2)
-MERGE (c2)-[:From_Sofia]->(d)
+MERGE (o)-[:From_Varna]->(c1)
+MERGE (c1)-[:From_Varna]->(s1)
+MERGE (s1)-[:From_Varna]->(c2)
+MERGE (c2)-[:From_Varna]->(d)
 
 RETURN *
 
@@ -193,5 +193,89 @@ MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_co
 MERGE (d:Destination {Destination:csvLine.Destination})
 
 MERGE (o)-[:From_Damietta {Route_duration:csvLine.duration}]->(d)
+
+RETURN *
+
+---
+# code for Setubal
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b633e2abe46259c37f95646f9ef04a30a030802b/portugal-setubal.csv?raw=1' AS csvLine
+
+MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Sebutal {Route_duration:csvLine.duration}]->(d)
+
+
+RETURN *
+
+
+--
+
+#code for rotterdam
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b633e2abe46259c37f95646f9ef04a30a030802b/nl-rotterdam.csv?raw=1' AS csvLine
+
+MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Rotterdam {Route_duration:csvLine.duration}]->(d)
+
+RETURN *
+
+---
+
+#code for mumbai
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/0e94e1af884e69abf80379ff29feca2e1e3d0ca2/india-mumbai.csv?raw=1' AS csvLine
+
+MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Chokepoint:csvLine.Chokepoint5})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Mumbai {Route_duration:csvLine.duration}]->(c4)
+MERGE (c4)-[:From_Mumbai {Route_duration:csvLine.duration}]->(c5)
+MERGE (c5)-[:From_Mumbai {Route_duration:csvLine.duration}]->(d)
+
+RETURN *
+
+---
+
+#code for aliaga
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/54ab77f28c0278dc75a9c4cefae35cd863b864ce/turkey-aliaga.csv?raw=1' AS csvLine
+
+MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Aliaga {Route_duration:csvLine.duration}]->(c4)
+MERGE (c4)-[:From_Aliaga {Route_duration:csvLine.duration}]->(d)
+
+RETURN *
+
+---
+
+#code for gemlik
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/54ab77f28c0278dc75a9c4cefae35cd863b864ce/turkey-gemlik.csv?raw=1' AS csvLine
+
+MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (c3:Chokepoint {Chokepoint:csvLine.Chokepoint3})
+MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Gemlik {Route_duration:csvLine.duration}]->(c3)
+MERGE (c3)-[:From_Gemlik {Route_duration:csvLine.duration}]->(c4)
+MERGE (c4)-[:From_Gemlik {Route_duration:csvLine.duration}]->(d)
 
 RETURN *
