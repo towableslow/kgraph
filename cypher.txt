@@ -1,36 +1,29 @@
+working code to for Bangladesh
 
-LOAD CSV WITH HEADERS FROM 'file:///test_neo_data.csv' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d0cf266c9b22977370ec3e58291dec24a771eb4e/bangladesh.csv?raw=1' AS csvLine
 
 MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country})
 MERGE (c1:Chokepoint {Chokepoint:csvLine.Chokepoint1})
-MERGE (c2:Chokepoint {Chokepoint:csvLine.Chokepoint2})
-MERGE (c3:Chokepoint {Chokepoint:csvLine.Chokepoint3})
 MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
 MERGE (c5:Chokepoint {Chokepoint:csvLine.Chokepoint5})
 
 MERGE (s1:Stop {Stop:csvLine.Stop1})
 MERGE (s2:Stop {Stop:csvLine.Stop2})
-MERGE (s3:Stop {Stop:csvLine.Stop3})
-MERGE (s4:Stop {Stop:csvLine.Stop4})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
-MERGE (o)-[:Departs]->(c1)
-MERGE (c1) -[:Travels_to]->(s1)
-MERGE (s1) -[:Travels_to]->(s2)
-MERGE (s2) -[:Travels_to]->(c2)
-MERGE (c2) -[:Travels_to]->(s3)
-MERGE (s3) -[:Travels_to]->(c3)
-MERGE (c3) -[:Travels_to]->(c4)
-MERGE (c4) -[:Travels_to]->(c5)
-MERGE (c5) -[:Travels_to]->(d)
+MERGE (o)-[:From_Chittagong]->(c1)
+MERGE (c1)-[:From_Chittagong]->(s1)
+MERGE (s1)-[:From_Chittagong]->(s2)
+MERGE (s2)-[:From_Chittagong]->(c4)
+MERGE (c4)-[:From_Chittagong]->(c5)
+MERGE (c5)-[:From_Chittagong]->(d)
 
-MERGE (o)-[:Stops_at]->(c)
-MERGE (o)-[:Stops_at]->(s)
+RETURN *
 
 ---
-
-LOAD CSV WITH HEADERS FROM 'file:///philippines.csv' AS csvLine
+#working code for Philippines data in Aura 
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/88bf67e4b19e48cdb7abaecb20c33be600090fbd/philippines.csv?raw=1' AS csvLine
 
 MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country})
 MERGE (c3:Chokepoint {Chokepoint:csvLine.Chokepoint3})
@@ -39,32 +32,28 @@ MERGE (c5:Chokepoint {Chokepoint:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
-MERGE (o)-[:Departs]->(c3)
-MERGE (c3) -[:Travels_to]->(c4)
-MERGE (c4) -[:Travels_to]->(c5)
-MERGE (c5) -[:Travels_to]->(d)
+MERGE (o)-[:From_Bataan]->(c3)
+MERGE (c3)-[:From_Bataan]->(c4)
+MERGE (c4)-[:From_Bataan]->(c5)
+MERGE (c5)-[:From_Bataan]->(d)
 
-RETURN d,o,c3,c4,c5
+RETURN *
 
-
-----
-LOAD CSV WITH HEADERS FROM 'file:///bangladesh.csv' AS csvLine
+---
+#working code for Bulgaria data in Aura 
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/f521fd140f4c8ef55417dc278ae5c4572acc954c/Bulgaria.csv?raw=1' AS csvLine
 
 MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country})
-MERGE (c1:Chokepoint {Chokepoint:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {Chokepoint:csvLine.Chokepoint5})
 
+MERGE (c1:Chokepoint {Chokepoint:csvLine.Chokepoint1})
 MERGE (s1:Stop {Stop:csvLine.Stop1})
-MERGE (s2:Stop {Stop:csvLine.Stop2})
+MERGE (c2:Chokepoint {Chokepoint:csvLine.Chokepoint2})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
-MERGE (o)-[:Departs]->(c1)
-MERGE (c1) -[:Travels_to]->(s1)
-MERGE (s1) -[:Travels_to]->(s2)
-MERGE (s2) -[:Travels_to]->(c4)
-MERGE (c4) -[:Travels_to]->(c5)
-MERGE (c5) -[:Travels_to]->(d)
+MERGE (o)-[:From_Sofia]->(c1)
+MERGE (c1)-[:From_Sofia]->(s1)
+MERGE (s1)-[:From_Sofia]->(c2)
+MERGE (c2)-[:From_Sofia]->(d)
 
-RETURN d,o,c1,c4,c5,s1,s2
+RETURN *
