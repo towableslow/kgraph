@@ -1,2 +1,2 @@
-Country,Origin,Port Code,Duration (days),Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
+Country,Origin,port_code,Duration (days),Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
 China,Qingdao,CNQIN,42,Strait of Malacca,,,,,,Suez Canal & Bab el-Mandeb,Strait of Gibraltar,UK
