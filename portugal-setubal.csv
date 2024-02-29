@@ -1,2 +1,2 @@
-Country,Origin,port_code,Duration (days),Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
-Portugal,Setubal,PTSET,2,,,,,,,,,UK
+Country,Origin,port_code,duration,Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
+Portugal,Setubal,PTSET,2 days,,,,,,,,,UK
