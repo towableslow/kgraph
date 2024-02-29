@@ -159,3 +159,25 @@ MERGE (c4)-[:From_Qingdao]->(c5)
 MERGE (c5)-[:From_Qingdao]->(d)
 
 RETURN *
+---
+#code for Egypt Alexandria
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/5bd9161dbe0e4d8eb873ba2455fa808d25d8816a/Egypt.csv?raw=1' AS csvLine
+
+MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (c2:Chokepoint {Chokepoint:csvLine.Chokepoint2})
+
+MERGE (s1:Stop {Stop:csvLine.Stop1})
+MERGE (s2:Stop {Stop:csvLine.Stop2})
+MERGE (s3:Stop {Stop:csvLine.Stop3})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Alexandria]->(s1)
+MERGE (s1)-[:From_Alexandria]->(s2)
+MERGE (s2)-[:From_Alexandria]->(c2)
+MERGE (c2)-[:From_Alexandria]->(s3)
+MERGE (s3)-[:From_Alexandria]->(d)
+
+RETURN *
