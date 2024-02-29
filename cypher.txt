@@ -181,3 +181,17 @@ MERGE (c2)-[:From_Alexandria]->(s3)
 MERGE (s3)-[:From_Alexandria]->(d)
 
 RETURN *
+
+--
+
+# code for Egypt Damietta
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/2a6f272b99f898345d29cdc71028cf1eb822dfd8/egypt-damietta.csv?raw=1' AS csvLine
+
+MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Damietta {Route_duration:csvLine.duration}]->(d)
+
+RETURN *
