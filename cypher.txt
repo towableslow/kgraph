@@ -279,3 +279,19 @@ MERGE (c3)-[:From_Gemlik {Route_duration:csvLine.duration}]->(c4)
 MERGE (c4)-[:From_Gemlik {Route_duration:csvLine.duration}]->(d)
 
 RETURN *
+
+
+---
+
+#Import food supplier data
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/3df180e0638202782be4ba6a4f55704193bd2c13/tier1_food_supplier.csv?raw=1' AS csvLine
+
+MERGE (f:Food_supplier {name: csvLine.sitename, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers})
+MERGE (o:Port_of_origin {name: csvLine.exported_from})
+MERGE (c:Country {Country:csvLine.country})
+
+MERGE (f)-[:Factory_located_in]->(c)
+MERGE (c)-[:Exported_from]->(o)
+
+RETURN *
