@@ -1,2 +1,2 @@
 Country,Origin,port_code,latitude,longitude,duration,Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
-Ireland,Dublin,IEDUB,53.35030185,", -6.20859520384967",0.5 days,,,,,,,,,UK
+Ireland,Dublin,IEDUB,53.35030185,-6.20859520384967,0.5 days,,,,,,,,,UK
