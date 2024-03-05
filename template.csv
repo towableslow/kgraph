@@ -1,0 +1,21 @@
+Country,Origin,port_code,latitude,longitude,duration,Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
+Belgium,Zeebrugge,BEZEE,51.34620168,3.195036648,6 days,,,,,,,,,UK
+Chile,Valparaiso,CLVAP,-33.03169762,-71.62673651,24 days,Panama Canal,Antwerp,,,,,,,UK
+Spain,Ferrol,ESFRO,43.47008098,-8.326074572,2 days,,,,,,,,,UK
+Italy,Salerno,ITSAL,40.67482937,14.74328399,6 days,,,,,,,,Strait of Gibraltar,UK
+Pakistan,Port Qasim,PKBQM,24.76657884,67.32635745,25 days,,,,,,,Suez Canal & Bab el-Mandeb,Strait of Gibraltar,UK
+Ireland,Dublin,IEDUB,53.35030185,", -6.20859520384967",0.5 days,,,,,,,,,UK
+South Africa,Cape Town,ZACPT,-33.91017011,18.42679858,16 days,,Rotterdam,,,,,,,UK
+Thailand,Laem Chabang,THLCH,13.06013812,100.892135,27 days,Strait of Malacca,Singapore,,,,,Suez Canal & Bab el-Mandeb,Strait of Gibraltar,UK
+New Zealand,Tauranga,NZTRG,-37.64665683,176.1957714,37 days,Panama Canal,Rodman,Antwerp,,,,,,UK
+Costa Rica,Moin,CRPMN,10.00547723,-83.1023743,12 days,,,,,,,,,UK
+Morocco,Tanger,MAPTM,35.79005672,-5.806498274,3 days,,,,,,,,Strait of Gibraltar,UK
+Greece,Piraeus,GRPIR,37.94185548,23.63307651,8 days,,Salerno,,,,,,Strait of Gibraltar,UK
+Malaysia,Tanjung Pelepas,MYTPP,1.341080378,103.5554023,26 days,,Singapore,,,,Strait of Malacca,Suez Canal & Bab el-Mandeb,Strait of Gibraltar,UK
+United States,Norfolk,USORF,39.5379397,-77.44263131,9 days,,Halifax,,,,,,,UK
+Brazil,Pecem,BRPEC,-3.546612182,-38.80952417,14 days,,Tanger,,,,,,Strait of Gibraltar,UK
+Indonesia,Jakarta,IDJKT,-6.09536917,106.8825263,27 days,,Singapore,,,,,Suez Canal & Bab el-Mandeb,Strait of Gibraltar,UK
+Sri Lanka,Columbo,LKCMB,6.940708799,79.84637731,19 days,Suez Canal & Bab el-Mandeb,Damietta,Piraeus,,,,,Strait of Gibraltar,UK
+Oman,Salalah,OMSLL,16.94166176,53.9954645,17 days,Suez Canal & Bab el-Mandeb,Jeddah,Valencia,Strait of Gibraltar,Sines,,,,UK
+Israel,Haifa,ILHFA,32.82477371,34.99421423,12 days,,Damietta,Valencia,Strait of Gibraltar,,,,,UK
+Honduras,Puerto Cortes,HNPCR,15.84684917,-87.94824958,17 days,,Santo Domingo,Rotterdam,,,,,,UK
