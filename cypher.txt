@@ -1,34 +1,93 @@
+#Import GNFR supplier data
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/582be8d3bf91337cb55864d13e2e7b5eba166e39/supplier_data/gnfr_supplier_list.csv?raw=1' AS csvLine
+
+MERGE (g:GNFR_supplier_site {Site_name: csvLine.sitename, Supplier: csvLine.supplier_name, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, Workers_union_or_committee_present: csvLine.workers_committee_or_union, Percentage_female_workers: csvLine.female_worker_percent})
+MERGE (c:Country {name:csvLine.country})
+
+MERGE (g)-[:Site_located_in]->(c)
+
+RETURN *
+
+---
+
+
+#Import GM supplier data
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/582be8d3bf91337cb55864d13e2e7b5eba166e39/supplier_data/gm_supplier_list.csv?raw=1' AS csvLine
+
+MERGE (p:GM_production_site {Site_name: csvLine.sitename, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, Workers_union_or_committee_present: csvLine.workers_committee_or_union, Percentage_female_workers: csvLine.female_worker_percent})
+MERGE (o:Port {Name: csvLine.exported_from})
+MERGE (c:Country {name:csvLine.country})
+
+MERGE (p)-[:Site_located_in]->(c)
+MERGE (c)-[:Exported_from]->(o)
+
+RETURN *
+
+
+---
+
+#Import textile/tu supplier data
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/0977a1319eebb6f158bb888a21f86b873d05b6b9/supplier_data/tu_factory_list.csv?raw=1' AS csvLine
+
+MERGE (t:Textile_factory {Factory_name: csvLine.sitename, Supplier_name: csvLine.supplier, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, Workers_union_or_committee_present: csvLine.workers_committee_or_union, Percentage_female_workers: csvLine.female_worker_percent, Migrant_workers:csvLine.migrant_workers})
+MERGE (o:Port {Name: csvLine.exported_from})
+MERGE (c:Country {name:csvLine.country})
+
+MERGE (t)-[:Factory_located_in]->(c)
+MERGE (c)-[:Exported_from]->(o)
+
+RETURN *
+
+---
+#Import food supplier data
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/33af70ce0c72e7c49301706086b7ccfcadcfb96a/supplier_data/food_supplier_list.csv?raw=1' AS csvLine
+
+MERGE (f:Food_supplier {Site_name: csvLine.sitename, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers})
+MERGE (o:Port {Name: csvLine.exported_from})
+MERGE (c:Country {name:csvLine.country})
+
+MERGE (f)-[:Factory_located_in]->(c)
+MERGE (c)-[:Exported_from]->(o)
+
+RETURN *
+
+---
+
 working code for Bangladesh
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/75b948d7e75bfe87e06074e04738b0d479469dbe/bangladesh.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/bangladesh.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country})
-MERGE (c1:Chokepoint {Chokepoint:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {Chokepoint:csvLine.Chokepoint5})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country})
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
 
-MERGE (s1:Stop {Stop:csvLine.Stop1})
-MERGE (s2:Stop {Stop:csvLine.Stop2})
+MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s2:Stop {name:csvLine.Stop2})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
-MERGE (o)-[:From_Chittagong]->(c1)
-MERGE (c1)-[:From_Chittagong]->(s1)
-MERGE (s1)-[:From_Chittagong]->(s2)
-MERGE (s2)-[:From_Chittagong]->(c4)
-MERGE (c4)-[:From_Chittagong]->(c5)
-MERGE (c5)-[:From_Chittagong]->(d)
+MERGE (o)-[:From_Chittagong {Route_duration:csvLine.duration}]->(c1)
+MERGE (c1)-[:From_Chittagong {Route_duration:csvLine.duration}]->(s1)
+MERGE (s1)-[:From_Chittagong {Route_duration:csvLine.duration}]->(s2)
+MERGE (s2)-[:From_Chittagong {Route_duration:csvLine.duration}]->(c4)
+MERGE (c4)-[:From_Chittagong {Route_duration:csvLine.duration}]->(c5)
+MERGE (c5)-[:From_Chittagong {Route_duration:csvLine.duration}]->(d)
 
 RETURN *
 
 ---
 #working code for Philippines data in Aura 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/75b948d7e75bfe87e06074e04738b0d479469dbe/philippines.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/philippines.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country})
-MERGE (c3:Chokepoint {Chokepoint:csvLine.Chokepoint3})
-MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {Chokepoint:csvLine.Chokepoint5})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country})
+MERGE (c3:Chokepoint {name:csvLine.Chokepoint3})
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -40,14 +99,14 @@ MERGE (c5)-[:From_Bataan]->(d)
 RETURN *
 
 ---
-#working code for Bulgaria data in Aura 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/54ab77f28c0278dc75a9c4cefae35cd863b864ce/Bulgaria.csv?raw=1' AS csvLine
+#working code for Bulgaria 
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/Bulgaria.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country})
 
-MERGE (c1:Chokepoint {Chokepoint:csvLine.Chokepoint1})
-MERGE (s1:Stop {Stop:csvLine.Stop1})
-MERGE (c2:Chokepoint {Chokepoint:csvLine.Chokepoint2})
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (c2:Chokepoint {name:csvLine.Chokepoint2})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -61,13 +120,13 @@ RETURN *
 ---
 
 #code for Shanghai
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/528795d0680aee3faa00cc566e9bf41265b71267/china-shanghai.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/china-shanghai.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
-MERGE (c1:Chokepoint {Chokepoint:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {Chokepoint:csvLine.Chokepoint5})
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -81,13 +140,13 @@ RETURN *
 --
 
 #code for Shenzhen
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/528795d0680aee3faa00cc566e9bf41265b71267/china-shenzhen.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/china-shenzhen.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
-MERGE (c1:Chokepoint {Chokepoint:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {Chokepoint:csvLine.Chokepoint5})
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -101,13 +160,13 @@ RETURN *
 ---
 
 #code for Guangzhou
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/f1956b17d3278509e2672d8668f2ade3bffd4bc3/china-guangzhou.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/china-guangzhou.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
-MERGE (c1:Chokepoint {Chokepoint:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {Chokepoint:csvLine.Chokepoint5})
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -122,13 +181,13 @@ RETURN *
 
 #code for Ningbo-Zhoushan
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/75b948d7e75bfe87e06074e04738b0d479469dbe/china-ningbo.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/china-ningbo.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
-MERGE (c1:Chokepoint {Chokepoint:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {Chokepoint:csvLine.Chokepoint5})
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -143,13 +202,13 @@ RETURN *
 ---
 #code for Qingdao
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/528795d0680aee3faa00cc566e9bf41265b71267/china-qingdao.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/china-qingdao.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
-MERGE (c1:Chokepoint {Chokepoint:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {Chokepoint:csvLine.Chokepoint5})
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -159,18 +218,20 @@ MERGE (c4)-[:From_Qingdao]->(c5)
 MERGE (c5)-[:From_Qingdao]->(d)
 
 RETURN *
+
 ---
+
 #code for Egypt Alexandria
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/5bd9161dbe0e4d8eb873ba2455fa808d25d8816a/Egypt.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/Egypt.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
-MERGE (c2:Chokepoint {Chokepoint:csvLine.Chokepoint2})
+MERGE (c2:Chokepoint {name:csvLine.Chokepoint2})
 
-MERGE (s1:Stop {Stop:csvLine.Stop1})
-MERGE (s2:Stop {Stop:csvLine.Stop2})
-MERGE (s3:Stop {Stop:csvLine.Stop3})
+MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s2:Stop {name:csvLine.Stop2})
+MERGE (s3:Stop {name:csvLine.Stop3})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -181,27 +242,30 @@ MERGE (c2)-[:From_Alexandria]->(s3)
 MERGE (s3)-[:From_Alexandria]->(d)
 
 RETURN *
+---
+#code for Egypt damietta
 
---
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/egypt-damietta.csv?raw=1' AS csvLine
 
-# code for Egypt Damietta
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/2a6f272b99f898345d29cdc71028cf1eb822dfd8/egypt-damietta.csv?raw=1' AS csvLine
-
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
-MERGE (o)-[:From_Damietta {Route_duration:csvLine.duration}]->(d)
+
+MERGE (o)-[:From_Damietta {Route_duration:csvLine.duration}]->(c1)
+MERGE (c1)-[:From_Damietta {Route_duration:csvLine.duration}]->(d)
 
 RETURN *
 
 ---
+
 # code for Setubal
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b633e2abe46259c37f95646f9ef04a30a030802b/portugal-setubal.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/portugal-setubal.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -215,9 +279,9 @@ RETURN *
 
 #code for rotterdam
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b633e2abe46259c37f95646f9ef04a30a030802b/nl-rotterdam.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/nl-rotterdam.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -229,12 +293,12 @@ RETURN *
 
 #code for mumbai
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/0e94e1af884e69abf80379ff29feca2e1e3d0ca2/india-mumbai.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/india-mumbai.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
-MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {Chokepoint:csvLine.Chokepoint5})
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -248,11 +312,11 @@ RETURN *
 
 #code for aliaga
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/54ab77f28c0278dc75a9c4cefae35cd863b864ce/turkey-aliaga.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/turkey-aliaga.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
-MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -265,12 +329,12 @@ RETURN *
 
 #code for gemlik
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/54ab77f28c0278dc75a9c4cefae35cd863b864ce/turkey-gemlik.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/turkey-gemlik.csv?raw=1' AS csvLine
 
-MERGE (o:Port_of_origin {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
-MERGE (c3:Chokepoint {Chokepoint:csvLine.Chokepoint3})
-MERGE (c4:Chokepoint {Chokepoint:csvLine.Chokepoint4})
+MERGE (c3:Chokepoint {name:csvLine.Chokepoint3})
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -280,18 +344,399 @@ MERGE (c4)-[:From_Gemlik {Route_duration:csvLine.duration}]->(d)
 
 RETURN *
 
+---
+# Code for Zeebrugge
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8e35c31a396c89e7f6fbfdd2f7e711d066a91ef4/zeebrugge.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Zeebrugge {Route_duration:csvLine.duration}]->(d)
+
+RETURN *
+
+---
+# Code for Valparaiso
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8e35c31a396c89e7f6fbfdd2f7e711d066a91ef4/valparaiso.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Valparaiso]->(c1)
+MERGE (c1)-[:From_Valparaiso]->(s1)
+MERGE (s1)-[:From_Valparaiso]->(d)
+
+RETURN *
 
 ---
 
-#Import food supplier data
+# Code for Ferrol
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/3df180e0638202782be4ba6a4f55704193bd2c13/tier1_food_supplier.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8e35c31a396c89e7f6fbfdd2f7e711d066a91ef4/ferrol.csv?raw=1' AS csvLine
 
-MERGE (f:Food_supplier {name: csvLine.sitename, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers})
-MERGE (o:Port_of_origin {name: csvLine.exported_from})
-MERGE (c:Country {Country:csvLine.country})
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
 
-MERGE (f)-[:Factory_located_in]->(c)
-MERGE (c)-[:Exported_from]->(o)
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Ferrol]->(d)
 
 RETURN *
+
+---
+
+# Code for Salerno
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8e35c31a396c89e7f6fbfdd2f7e711d066a91ef4/salerno.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Salerno]->(c5)
+MERGE (c5)-[:From_Salerno]->(d)
+
+RETURN *
+
+---
+
+# Code for Port Qasim
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8e35c31a396c89e7f6fbfdd2f7e711d066a91ef4/port_qasim.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Port_Qasim]->(c4)
+MERGE (c4)-[:From_Port_Qasim]->(c5)
+MERGE (c5)-[:From_Port_Qasim]->(d)
+
+RETURN *
+
+---
+
+# Code for Dublin
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8e35c31a396c89e7f6fbfdd2f7e711d066a91ef4/dublin.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Dublin]->(d)
+
+RETURN *
+
+---
+
+# Code for Cape Town
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/cape_town.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Cape_Town]->(s1)
+MERGE (s1)-[:From_Cape_Town]->(d)
+
+RETURN *
+
+---
+
+# Code for Laem Chabang
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/laem_chabang.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Laem_Chabang]->(c1)
+MERGE (c1)-[:From_Laem_Chabang]->(s1)
+MERGE (s1)-[:From_Laem_Chabang]->(c4)
+MERGE (c4)-[:From_Laem_Chabang]->(c5)
+MERGE (c5)-[:From_Laem_Chabang]->(d)
+
+RETURN *
+
+
+---
+
+# Code for Tauranga
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/tauranga.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s2:Stop {name:csvLine.Stop2})
+
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Tauranga_New_Zealand]->(c1)
+MERGE (c1)-[:From_Tauranga_New_Zealand]->(s1)
+MERGE (s1)-[:From_Tauranga_New_Zealand]->(s2)
+MERGE (s2)-[:From_Tauranga_New_Zealand]->(d)
+
+RETURN *
+
+---
+
+# Code for Moin
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/moin.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Moin_Costa_Rica]->(d)
+
+RETURN *
+
+---
+
+# Code for Tangier
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/tangier.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Tangier_Morocco]->(c5)
+MERGE (c5)-[:From_Tangier_Morocco]->(d)
+
+RETURN *
+
+---
+
+# Code for Piraeus
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/Piraeus.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Piraeus_Greece]->(s1)
+MERGE (s1)-[:From_Piraeus_Greece]->(c5)
+MERGE (c5)-[:From_Piraeus_Greece]->(d)
+
+RETURN *
+
+---
+
+# Code for tanjung_pelepas
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/tanjung_pelepas.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+
+MERGE (c3:Chokepoint {name:csvLine.Chokepoint3})
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Tanjung_Pelepas_Malaysia]->(s1)
+MERGE (s1)-[:From_Tanjung_Pelepas_Malaysia]->(c3)
+MERGE (c3)-[:From_Tanjung_Pelepas_Malaysia]->(c4)
+MERGE (c4)-[:From_Tanjung_Pelepas_Malaysia]->(c5)
+MERGE (c5)-[:From_Tanjung_Pelepas_Malaysia]->(d)
+
+RETURN *
+
+---
+
+# Code for Norfolk virginia
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/norfolk_us.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Norfolk_Virginia]->(s1)
+MERGE (s1)-[:From_Norfolk_Virginia]->(d)
+
+RETURN *
+
+---
+
+# Code for Pecem
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/pecem.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Pecem_Brazil]->(s1)
+MERGE (s1)-[:From_Pecem_Brazil]->(c5)
+MERGE (c5)-[:From_Pecem_Brazil]->(d)
+
+RETURN *
+
+---
+
+# Code for Jakarta
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/jakarta.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+
+MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Jakarta_Indonesia]->(s1)
+MERGE (s1)-[:From_Jakarta_Indonesia]->(c4)
+MERGE (c4)-[:From_Jakarta_Indonesia]->(c5)
+MERGE (c5)-[:From_Jakarta_Indonesia]->(d)
+
+RETURN *
+
+---
+
+# Code for Columbo
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/columbo.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s2:Stop {name:csvLine.Stop2})
+
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Columbo_Sri_Lanka]->(c1)
+MERGE (c1)-[:From_Columbo_Sri_Lanka]->(s1)
+MERGE (s1)-[:From_Columbo_Sri_Lanka]->(s2)
+MERGE (s2)-[:From_Columbo_Sri_Lanka]->(c5)
+MERGE (c5)-[:From_Columbo_Sri_Lanka]->(d)
+
+RETURN *
+
+---
+
+# Code for Oman
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/salalah.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s2:Stop {name:csvLine.Stop2})
+MERGE (s3:Stop {name:csvLine.Stop3})
+
+MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (c2:Chokepoint {name:csvLine.Chokepoint2})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Salalah_Oman]->(c1)
+MERGE (c1)-[:From_Salalah_Oman]->(s1)
+MERGE (s1)-[:From_Salalah_Oman]->(s2)
+MERGE (s2)-[:From_Salalah_Oman]->(c2)
+MERGE (c2)-[:From_Salalah_Oman]->(s3)
+MERGE (s3)-[:From_Salalah_Oman]->(d)
+
+RETURN *
+
+---
+
+# Code for Haifa
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/haifa.csv?raw=1' AS csvLine
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s2:Stop {name:csvLine.Stop2})
+
+MERGE (c2:Chokepoint {name:csvLine.Chokepoint2})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Haifa_Israel]->(s1)
+MERGE (s1)-[:From_Haifa_Israel]->(s2)
+MERGE (s2)-[:From_Haifa_Israel]->(c2)
+MERGE (c2)-[:From_Haifa_Israel]->(d)
+
+RETURN *
+
+---
+
+# Code for Puerto Cortes
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/puerto_cortes_honduras.csv?raw=1' AS csvLine
+
+
+MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+
+MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s2:Stop {name:csvLine.Stop2})
+
+MERGE (d:Destination {Destination:csvLine.Destination})
+
+MERGE (o)-[:From_Puerto_Cortes_Honduras]->(s1)
+MERGE (s1)-[:From_Puerto_Cortes_Honduras]->(s2)
+MERGE (s2)-[:From_Puerto_Cortes_Honduras]->(d)
+
+RETURN *
+
+
+
+MATCH (o:Port_of_origin)
+WHERE distance(o.coords, point({longitude:-87.9482495827955, latitude:15.8468491734727})) <5000
+RETURN o
+
+PROFILE MATCH (p:Point)
+WHERE
+point.distance(p.location, point({latitude: 37.563434, longitude:-122.322255})) < 200
+RETURN p{.*} AS point
