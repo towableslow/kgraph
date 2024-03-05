@@ -1,2 +1,2 @@
-Country,Origin,Port Code,Duration (days),Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
-Bulgaria,Varna,BGVAR,14,Turkish Straits,Athens,,Strait of Gibraltar,,,,,UK
+Country,Origin,port_code,latitude,longitude,duration,Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
+Bulgaria,Varna,BGVAR,43.233936,27.823342,14 days,Turkish Straits,Athens,,Strait of Gibraltar,,,,,UK

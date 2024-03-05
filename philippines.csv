@@ -1,2 +1,2 @@
-Country,Origin,Port Code,Duration (days),Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
-Philippines,Bataan,PHBTN,48,,,,,,Strait of Malacca,Suez Canal & Bab el-Mandeb,Strait of Gibraltar,UK
+Country,Origin,port_code,latitude,longitude,duration,Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
+Philippines,Bataan,PHBTN,14.80457976,120.2654569,48 days,,,,,,Strait of Malacca,Suez Canal & Bab el-Mandeb,Strait of Gibraltar,UK

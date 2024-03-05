@@ -1,2 +1,2 @@
-Country,Origin,port_code,duration,Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
-Turkey,Aliaga,TRALI,7 days,,,,,,,Strait of Gibraltar,,UK
+Country,Origin,port_code,latitude,longitude,duration,Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
+Turkey,Aliaga,TRALI,38.78143738,26.94053649,7 days,,,,,,,Strait of Gibraltar,,UK

@@ -1,2 +1,2 @@
-Country,Origin,port_code,Duration (days),Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
-China,Shenzhen,CNSNZ,28,Strait of Malacca,,,,,,Suez Canal & Bab el-Mandeb,Strait of Gibraltar,UK
+Country,Origin,port_code,latitude,longitude,duration,Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
+China,Shenzhen,CNSNZ,22.55907254,114.2429495,28 days,Strait of Malacca,,,,,,Suez Canal & Bab el-Mandeb,Strait of Gibraltar,UK

@@ -1,2 +1,2 @@
-Country,Origin,port_code,duration,Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
-Netherlands,Rotterdam,NLRTM,1 day,,,,,,,,,UK
+Country,Origin,port_code,latitude,longitude,duration,Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
+Netherlands,Rotterdam,NLRTM,51.95681457,4.147219502,1 day,,,,,,,,,UK

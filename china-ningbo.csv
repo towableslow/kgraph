@@ -1,2 +1,2 @@
-Country,Origin,port_code,Duration (days),Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
-China,Ningbo-Zhoushan,CNNBO,35,Strait of Malacca,,,,,,Suez Canal & Bab el-Mandeb,Strait of Gibraltar,UK
+Country,Origin,port_code,latitude,longitude,Duration (days),Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
+China,Ningbo-Zhoushan,CNNBO,29.93291007,121.8492308,35 days,Strait of Malacca,,,,,,Suez Canal & Bab el-Mandeb,Strait of Gibraltar,UK

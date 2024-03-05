@@ -1,2 +1,2 @@
-Country,Origin,port_code,Duration (days),Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
-Egypt,Alexandria,EGALY,16,,Salerno,Castellon,Strait of Gibraltar,Porto,,,,UK
+Country,Origin,port_code,latitude,longitude,duration,Chokepoint1,Stop1,Stop2,Chokepoint2,Stop3,Chokepoint3,Chokepoint4,Chokepoint5,Destination
+Egypt,Alexandria,EGALY,31.14250198,29.79274472,16 days,,Salerno,Castellon,Strait of Gibraltar,Porto,,,,UK
