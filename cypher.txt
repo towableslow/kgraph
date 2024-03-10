@@ -192,7 +192,7 @@ MERGE (d:Destination {Destination:csvLine.Destination})
 
 MERGE (o)-[:From_NingboZhoushan]->(c1)
 MERGE (c1)-[:From_NingboZhoushan]->(c4)
-MERGE (c4)-[:From_NingboZhoushan]->(c4)
+MERGE (c4)-[:From_NingboZhoushan]->(c5)
 MERGE (c5)-[:From_NingboZhoushan]->(d)
 
 RETURN *
