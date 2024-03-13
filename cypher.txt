@@ -292,7 +292,7 @@ RETURN *
 
 #code for mumbai
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/india-mumbai.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/db626ab6a43049831f4f3e0b6cf8941376307135/india-mumbai.csv?raw=1' AS csvLine
 
 MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
