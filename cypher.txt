@@ -1,60 +1,3 @@
-#Import GNFR supplier data
-
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/582be8d3bf91337cb55864d13e2e7b5eba166e39/supplier_data/gnfr_supplier_list.csv?raw=1' AS csvLine
-
-MERGE (g:GNFR_supplier_site {Site_name: csvLine.sitename, Supplier: csvLine.supplier_name, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, Workers_union_or_committee_present: csvLine.workers_committee_or_union, Percentage_female_workers: csvLine.female_worker_percent})
-MERGE (c:Country {name:csvLine.country})
-
-MERGE (g)-[:Site_located_in]->(c)
-
-RETURN *
-
----
-
-
-#Import GM supplier data
-
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/0edc6db020732ca6427791df7556927df5858887/supplier_data/gm_supplier_list.csv?raw=1' AS csvLine
-
-MERGE (p:GM_production_site {Site_name: csvLine.sitename, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, Workers_union_or_committee_present: csvLine.workers_committee_or_union, Percentage_female_workers: csvLine.female_worker_percent, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
-MERGE (o:Port {Name: csvLine.exported_from})
-MERGE (c:Country {name:csvLine.country})
-
-MERGE (p)-[:Site_located_in]->(c)
-MERGE (c)-[:Exported_from]->(o)
-
-RETURN *
-
----
-
-#Import textile/tu supplier data
-
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d62528fb93c3136a43161f2d509792eb0d68d46e/supplier_data/tu_factory_list.csv?raw=1' AS csvLine
-
-MERGE (t:Textile_factory {Factory_name: csvLine.sitename, Supplier_name: csvLine.supplier, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, Workers_union_or_committee_present: csvLine.workers_committee_or_union, Percentage_female_workers: csvLine.female_worker_percent, Migrant_workers:csvLine.migrant_workers, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
-MERGE (o:Port {Name: csvLine.exported_from})
-MERGE (c:Country {name:csvLine.country})
-
-MERGE (t)-[:Factory_located_in]->(c)
-MERGE (c)-[:Exported_from]->(o)
-
-RETURN *
-
----
-#Import food supplier data
-
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/0edc6db020732ca6427791df7556927df5858887/supplier_data/food_supplier_list.csv?raw=1' AS csvLine
-
-MERGE (f:Food_supplier {Site_name: csvLine.sitename, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
-MERGE (o:Port {Name: csvLine.exported_from})
-MERGE (c:Country {name:csvLine.country})
-
-MERGE (f)-[:Factory_located_in]->(c)
-MERGE (c)-[:Exported_from]->(o)
-
-RETURN *
-
----
 
 working code for Bangladesh
 
@@ -739,3 +682,64 @@ PROFILE MATCH (p:Point)
 WHERE
 point.distance(p.location, point({latitude: 37.563434, longitude:-122.322255})) < 200
 RETURN p{.*} AS point
+
+=========================================
+=========================================
+
+#Import GNFR supplier data
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/582be8d3bf91337cb55864d13e2e7b5eba166e39/supplier_data/gnfr_supplier_list.csv?raw=1' AS csvLine
+
+MERGE (g:GNFR_supplier_site {Site_name: csvLine.sitename, Supplier: csvLine.supplier_name, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, Workers_union_or_committee_present: csvLine.workers_committee_or_union, Percentage_female_workers: csvLine.female_worker_percent})
+MERGE (c:Country {name:csvLine.country})
+
+MERGE (g)-[:Site_located_in]->(c)
+
+RETURN *
+
+---
+
+
+#Import GM supplier data
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/0edc6db020732ca6427791df7556927df5858887/supplier_data/gm_supplier_list.csv?raw=1' AS csvLine
+
+MERGE (p:GM_production_site {Site_name: csvLine.sitename, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, Workers_union_or_committee_present: csvLine.workers_committee_or_union, Percentage_female_workers: csvLine.female_worker_percent, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.exported_from})
+MERGE (c:Country {name:csvLine.country})
+
+MERGE (p)-[:Site_located_in]->(c)
+MERGE (p)-[:Exported_from]->(o)
+
+RETURN *
+
+---
+
+#Import textile/tu supplier data
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/a87d4288d83654617970748a614b0b37170a46ce/supplier_data/tu_factory_list.csv?raw=1' AS csvLine
+
+MERGE (t:Textile_factory {Factory_name: csvLine.sitename, Supplier_name: csvLine.supplier, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, Workers_union_or_committee_present: csvLine.workers_committee_or_union, Percentage_female_workers: csvLine.female_worker_percent, Migrant_workers:csvLine.migrant_workers, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.exported_from})
+MERGE (c:Country {name:csvLine.country})
+
+MERGE (t)-[:Factory_located_in]->(c)
+MERGE (t)-[:Exported_from]->(o)
+
+RETURN *
+
+---
+#Import food supplier data
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/0edc6db020732ca6427791df7556927df5858887/supplier_data/food_supplier_list.csv?raw=1' AS csvLine
+
+MERGE (f:Food_supplier {Site_name: csvLine.sitename, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.exported_from})
+MERGE (c:Country {name:csvLine.country})
+
+MERGE (f)-[:Factory_located_in]->(c)
+MERGE (f)-[:Exported_from]->(o)
+
+RETURN *
+
+---
