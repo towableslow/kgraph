@@ -1,11 +1,11 @@
 ﻿supplier,sitename,latitude,longitude,address1,address2,address3,city,country,product_type,total_workers,female_worker_percent,male_worker_percent,migrant_workers,workers_committee_or_union,production_processes,exported_from
 [blank],"Wenshang County
-Jiacheng Garment Ltd",24.90269238,118.7728406,Liulou Village,"Wenshang
+Jiacheng Garment Ltd",23.14841834,113.2047112,Liulou Village,"Wenshang
 County",[blank],Jining,China,Clothing,226,98%,2%,0%,Yes,"Main Production
-Site",Shanghai
-[blank],VISHNU CLOTHING COMPANY,1,1,S.F. NO.45 VENUS GARDEN,MANGALAM ROAD,ANDIPALAYAM,Tiripur,India,Clothing,175,29%,71%,0%,Yes,Main Production Site,[blank]
+Site",Guangzhou
+[blank],VISHNU CLOTHING COMPANY,23.11834816,113.3289691,S.F. NO.45 VENUS GARDEN,MANGALAM ROAD,ANDIPALAYAM,Tiripur,India,Clothing,175,29%,71%,0%,Yes,Main Production Site,Mumbai
 [blank],"YANTAI LANGLANG
-FASHION LIMITED",25.14099509,119.0649698,"NO.27 HAIXING
+FASHION LIMITED",23.17647775,113.2826449,"NO.27 HAIXING
 ROAD ,",HAIYANG CITY,[blank],Haiyang,China,Clothing,175,59%,41%,29%,Yes,"Main Production
 Site",Shanghai
 "KDS Fashion
@@ -13,11 +13,11 @@ Limited",KDS Fashion Limited,1,1,"KDS Fashion
 Limited","253, 254
 Nasirabad I/A,",[blank],Chittagong,Bangladesh,Clothing,3800,79%,21%,0%,Yes,"Main Production
 Site",[blank]
-[blank],CIXI KINGTONG SHOES FACTORY,24.83730849,118.8110592,"No. 281,
-Zhangxin North Road",Xiaolin Town,[blank],Cixi,China,Clothing,39,79%,21%,90%,Yes,Main Production Site,Shanghai
+[blank],CIXI KINGTONG SHOES FACTORY,23.11834816,113.3289691,"No. 281,
+Zhangxin North Road",Xiaolin Town,[blank],Cixi,China,Clothing,39,79%,21%,90%,Yes,Main Production Site,Guangzhou
 [blank],CLIFTON EXPORT PRIVATE LIMITED,1,1,"SF NO
 108/3E,Sedapala yam road,","Karaipudhur village,Arulpura
-m",[blank],Tirupur,India,Clothing,686,32%,68%,0%,Yes,Main Production Site,[blank]
+m",[blank],Tirupur,India,Clothing,686,32%,68%,0%,Yes,Main Production Site,Mumbai
 [blank],"Sihui Weilong Shoes , Co ,
 Ltd",25.30073835,117.9287457,"No 3 , Hexi Rd","ZhenShan
 District",[blank],Sihui City,China,Clothing,190,88%,12%,5%,Yes,"Main Production
@@ -25,8 +25,8 @@ Site",Shanghai
 [blank],Hela – Naula,1,1,"Hela Clothing
 (pvt) Ltd",Aranagala,[blank],Naula,Sri Lanka,Clothing,653,81%,19%,0%,Yes,"Main Production
 Site",[blank]
-[blank],Partyime Costume and Lingerie (Yiwu) factory,24.66575223,119.2455531,"No. 251,
-Huachuan North Road","Chian Town,",[blank],Yiwu City,China,Clothing,92,48%,52%,92%,Yes,Main Production Site,Shanghai
+[blank],Partyime Costume and Lingerie (Yiwu) factory,23.21304637,113.2472205,"No. 251,
+Huachuan North Road","Chian Town,",[blank],Yiwu City,China,Clothing,92,48%,52%,92%,Yes,Main Production Site,Guangzhou
 [blank],L'usine Fashions Ltd,1,1,"Chonnapara,
 Sreepur",Gazipur,[blank],Gazipur,Bangladesh,Clothing,948,40%,60%,0%,Yes,"Main Production
 Site",[blank]
@@ -35,21 +35,21 @@ Knittings Ltd",Aman Knittings Ltd,1,1,"Kulashur,
 Hemayetpur",Savar,[blank],"Savar, Dhaka",Bangladesh,Clothing,1372,45%,55%,0%,Yes,"Main Production
 Site",[blank]
 [blank],"Nantong Aike Garment
-Company Ltd",24.52850188,118.3471158,"Group 17
+Company Ltd",23.21755413,113.2047112,"Group 17
 Huanchi Village",Jiangan Town,[blank],Rugao City,China,Clothing,148,82%,18%,5%,Yes,"Main Production
-Site",Shanghai
+Site",Guangzhou
 [blank],"Progress Apparels
 (Bangladesh) Ltd.",1,1,MS-SFB-01 & 02,Adamjee EPZ,Narayanganj,Dhaka,Bangladesh,Clothing,2694,76%,24%,0%,Yes,"Main Production
 Site",[blank]
-[blank],"Haiyang Yingtong Woollen Sweater Co., Ltd",25.28640675,118.8813717,"No.7 Fangyuan Road, Haiyang",City Shandong Province. China.,[blank],Haiyang,China,Clothing,257,65%,35%,13%,Yes,Main Production Site,Shanghai
+[blank],"Haiyang Yingtong Woollen Sweater Co., Ltd",23.34020705,113.2624802,"No.7 Fangyuan Road, Haiyang",City Shandong Province. China.,[blank],Haiyang,China,Clothing,257,65%,35%,13%,Yes,Main Production Site,Guangzhou
 [blank],"DINGTAO FITEX APPRAREL
-CO,.LTD",24.2630794,119.2110329,"Yantai Industrial
+CO,.LTD",23.18599657,113.1627469,"Yantai Industrial
 Park",East LuHua Road,"DingTao Town,",Heze,China,Clothing,144,96%,4%,0%,Yes,"Main Production
-Site",Shanghai
+Site",Guangzhou
 [blank],"Fuzhou Starrising
-Industrial Co Ltd",24.73982602,117.7196876,"No.16 Liang An
+Industrial Co Ltd",23.23057572,113.0537487,"No.16 Liang An
 Road,",shanggan town,minhou district,Fuzhou,China,Clothing,141,65%,35%,86%,Yes,"Main Production
-Site",Shanghai
+Site",Guangzhou
 [blank],"Fuqing Yongxiu shoes
 industrial co.,ltd",24.03053527,118.6253325,QiYun village,"Jingyang
 Industry",[blank],Fuqing,China,Clothing,400,56%,44%,88%,Yes,"Main Production
@@ -57,7 +57,7 @@ Site",Shanghai
 [blank],"Quantum Knits (A Unit of
 KPR Mill Limited)",1,1,"181,
 Kollupalayam",Arasur,[blank],Coimbatore,India,Clothing,4557,89%,11%,0%,Yes,"Main Production
-Site",[blank]
+Site",Mumbai
 [blank],"Fuzhou Jinyi Gold and
 Silver Ornaments",24.63084515,118.8518671,"217# Jin Jing
 Road",Jingyang Village,"Jingyang Town,
@@ -72,7 +72,7 @@ CO., LTD.",No. 68-1,"North Third
 Ring Road",Jingjiang,China,Clothing,63,86%,14%,3%,Yes,"Main Production
 Site",Shanghai
 [blank],PEARL APPARELS,1,1,Plot No-585,Sector-37,Pace City-II,Gurgaon,India,Clothing,450,27%,73%,0%,Yes,"Main Production
-Site",[blank]
+Site",Mumbai
 [blank],"Tonglu Rongsheng Knitting Co., Ltd",24.69481656,118.6951715,"No.88 Taixin Road, Tonglu","County, Hangzhou City,","Zhejiang Province, China",Hangzhou,China,Clothing,73,60%,40%,14%,Yes,Main Production Site,Shanghai
 [blank],"Kenpark Bangladesh
 Apparel Pvt. Ltd. (K-3)",1,1,"35-37,Sector#
@@ -83,7 +83,7 @@ Bangalore",1,1,"72/1, 73/2 B.M
 Road","Basavanapura
 Village","Ramnagar Tk &
 Dt",Bangalore,India,Clothing,340,76%,24%,0%,Yes,"Main Production
-Site",[blank]
+Site",Mumbai
 [blank],"Hangzhou Tianguan Hat Co.,Ltd",24.92748779,118.5400661,"Huyang Chang,Jingshan
 Town","Yuhang District,Hangzho
 u City","Zhejiang province, China",HANGZHOU,China,Clothing,46,87%,13%,7%,Yes,Main Production Site,Shanghai
@@ -120,7 +120,7 @@ Manufacturer Co. Ltd",25.34604973,118.3061088,No. 26 Hua'an Road,Pengjiang Distr
 Arcot Road)",1,1,"No : 6 Arcot
 Road, Porur,","Tamilnadu,
 Chennai",[blank],Tamilnadu,India,Clothing,241,73%,27%,0%,Yes,"Main Production
-Site",[blank]
+Site",Mumbai
 [blank],"Huainan Shine Source
 Footwear Co., Ltd.",24.77158229,118.8595844,"No.222 Xingye
 Road","Industrial
@@ -150,7 +150,7 @@ Gazipur",[blank],Gazipur,Bangladesh,Clothing,1959,35%,65%,0%,Yes,"Main Productio
 Site",[blank]
 [blank],Fortune Syntex Pvt. Ltd,1,1,"C-126, HOSIERY
 COMPLEX",PHASE-II,NA,NOIDA,India,Clothing,94,4%,96%,0%,Yes,"Main Production
-Site",[blank]
+Site",Mumbai
 [blank],Interstoff Apparels Ltd.,1,1,"Chandra,
 Kaliakoir",Gazipur,Gazipur,Gazipur,Bangladesh,Clothing,4200,47%,53%,0%,Yes,"Main Production
 Site",[blank]
