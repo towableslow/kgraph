@@ -1,0 +1,48 @@
+
+# REturn locations within 5000m of stated point
+
+MATCH (o:Port_of_origin)
+WHERE point.distance(o.coords, point({longitude:-87.9482495827955, latitude:15.8468491734727})) <5000
+RETURN o
+
+
+24.77928253008689, 118.55274694399394
+
+# Return any node (user selected)
+
+WITH "MATCH (n:" + c + ") " +
+  " RETURN n" AS qryStr
+
+CALL apoc.cypher.run(qryStr, {}) YIELD value AS nodes
+RETURN nodes
+
+# Search for paths with 5 number of hops (takes a long time)
+MATCH (o:Port)-[*5]-(p:Destination)
+RETURN *
+
+
+---Test area---
+
+# Return any node (user selected) within radius
+
+WITH "MATCH (n:" + $label + ") " +
+  "WHERE n." + point.distance(o.coords, point({longitude:-87.9482495827955, latitude:15.8468491734727})) + 
+  " " + "<" +
+  " " + $distance*1000 +
+  " RETURN n" AS qryStr
+  
+CALL apoc.cypher.run(qryStr, {}) YIELD value AS nodes
+RETURN nodes
+
+
+
+WITH "MATCH (n:" + $label + ") " +
+  "WHERE n." + "point.distance(n.coords, point({longitude:-87.9482495827955, latitude:15.8468491734727}))" +
+  " " + "<" +
+  " " + $distance*1000 +
+  " RETURN n" AS qryStr
+CALL apoc.cypher.run(qryStr, {}) YIELD value AS nodes
+RETURN nodes
+
+
+# Search for paths with x number of hops
