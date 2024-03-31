@@ -745,7 +745,7 @@ RETURN *
 
 #import principal risks
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/2b242d3584f49ec7a2c9d3ae0fd00e299d76051c/risk_data/principal_risks.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8c07e1850aa8835f5f66e5f1650f76fe7fbf9e26/risk_data/principal_risks.csv?raw=1' AS csvLine
 
 MERGE (p:Principal_risk {Full_risk_title: csvLine.full_title, Short_title:csvLine.principal_risk, Reference: csvLine.reference})
 MERGE (c:Chokepoint {Name: csvLine.chokepoint})
@@ -754,16 +754,22 @@ MERGE (c)-[:Influences]->(p)
 
 #import risk areas
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/2b242d3584f49ec7a2c9d3ae0fd00e299d76051c/risk_data/risk_areas.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8c07e1850aa8835f5f66e5f1650f76fe7fbf9e26/risk_data/risk_areas.csv?raw=1' AS csvLine
 
 MERGE (c:Chokepoint {Name: csvLine.chokepoint, Flood_and_drought_risk: csvLine.flood_and_drought, Storms_risk: csvLine.storms, Haze_and_fog_risk: csvLine.haze_and_fog, Conflict_risk:csvLine.conflict, Terrorist_attack_risk: csvLine.terrorist_attack, Piracy_risk:csvLine.piracy, Cyber_attack_risk: csvLine.cyber_attack, Disrepair_risk:csvLine.disrepair, Unforced_delays_risk:csvLine.unforced_delays })
 MERGE (r:Risk_area {Risk_area: csvLine.storms_risk})
-MERGE (r:Risk_area {Risk_area: csvLine.haze_risk})
-MERGE (r:Risk_area {Risk_area: csvLine.terror_risk})
-MERGE (r:Risk_area {Risk_area: csvLine.conflict_risk})
-MERGE (r:Risk_area {Risk_area: csvLine.piracy_risk})
+MERGE (r2:Risk_area {Risk_area: csvLine.haze_risk})
+MERGE (r3:Risk_area {Risk_area: csvLine.terror_risk})
+MERGE (r4:Risk_area {Risk_area: csvLine.conflict_risk})
+MERGE (r5:Risk_area {Risk_area: csvLine.piracy_risk})
 
 MERGE (r)-[:Applies_to]->(c)
+MERGE (r2)-[:Applies_to]->(c)
+MERGE (r3)-[:Applies_to]->(c)
+MERGE (r4)-[:Applies_to]->(c)
+MERGE (r5)-[:Applies_to]->(c)
+
+RETURN *
 
 # import supporting_data
 
@@ -774,6 +780,7 @@ MERGE (d:Dataset {Name: csvLine.dataset})
 
 MERGE (d)-[:Monitors]->(r)
 
+RETURN *
 ---
 #Create indexes
 
