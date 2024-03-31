@@ -3,13 +3,13 @@ working code for Bangladesh
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/bangladesh.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
-MERGE (s2:Stop {name:csvLine.Stop2})
+MERGE (s1:Stop {Name:csvLine.Stop1})
+MERGE (s2:Stop {Name:csvLine.Stop2})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -26,10 +26,10 @@ RETURN *
 #working code for Philippines data in Aura 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/philippines.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
-MERGE (c3:Chokepoint {name:csvLine.Chokepoint3})
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (c3:Chokepoint {Name:csvLine.Chokepoint3})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -44,11 +44,11 @@ RETURN *
 #working code for Bulgaria 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/Bulgaria.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
-MERGE (s1:Stop {name:csvLine.Stop1})
-MERGE (c2:Chokepoint {name:csvLine.Chokepoint2})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
+MERGE (s1:Stop {Name:csvLine.Stop1})
+MERGE (c2:Chokepoint {Name:csvLine.Chokepoint2})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -64,11 +64,11 @@ RETURN *
 #code for Shanghai
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/china-shanghai.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -84,11 +84,11 @@ RETURN *
 #code for Shenzhen
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/china-shenzhen.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -104,11 +104,11 @@ RETURN *
 #code for Guangzhou
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/china-guangzhou.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -125,11 +125,11 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/china-ningbo.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -146,11 +146,11 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/china-qingdao.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -167,13 +167,13 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/Egypt.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c2:Chokepoint {name:csvLine.Chokepoint2})
+MERGE (c2:Chokepoint {Name:csvLine.Chokepoint2})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
-MERGE (s2:Stop {name:csvLine.Stop2})
-MERGE (s3:Stop {name:csvLine.Stop3})
+MERGE (s1:Stop {Name:csvLine.Stop1})
+MERGE (s2:Stop {Name:csvLine.Stop2})
+MERGE (s3:Stop {Name:csvLine.Stop3})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -189,9 +189,9 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/egypt-damietta.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -207,7 +207,7 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/portugal-setubal.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -223,7 +223,7 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/nl-rotterdam.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -237,10 +237,10 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/db626ab6a43049831f4f3e0b6cf8941376307135/india-mumbai.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -256,9 +256,9 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/turkey-aliaga.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -273,10 +273,10 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/turkey-gemlik.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c3:Chokepoint {name:csvLine.Chokepoint3})
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
+MERGE (c3:Chokepoint {Name:csvLine.Chokepoint3})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -291,7 +291,7 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8e35c31a396c89e7f6fbfdd2f7e711d066a91ef4/zeebrugge.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -304,11 +304,11 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8e35c31a396c89e7f6fbfdd2f7e711d066a91ef4/valparaiso.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s1:Stop {Name:csvLine.Stop1})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -324,7 +324,7 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8e35c31a396c89e7f6fbfdd2f7e711d066a91ef4/ferrol.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -338,9 +338,9 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8e35c31a396c89e7f6fbfdd2f7e711d066a91ef4/salerno.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -355,10 +355,10 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/8e35c31a396c89e7f6fbfdd2f7e711d066a91ef4/port_qasim.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -374,7 +374,7 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/4ab79684fdc70bc75f0d6d78763a64f98d16db75/dublin.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -388,9 +388,9 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/cape_town.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s1:Stop {Name:csvLine.Stop1})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -405,13 +405,13 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/laem_chabang.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s1:Stop {Name:csvLine.Stop1})
 
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -430,12 +430,12 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/tauranga.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
-MERGE (s2:Stop {name:csvLine.Stop2})
+MERGE (s1:Stop {Name:csvLine.Stop1})
+MERGE (s2:Stop {Name:csvLine.Stop2})
 
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -452,7 +452,7 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/moin.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -466,9 +466,9 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/tangier.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -483,11 +483,11 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/Piraeus.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s1:Stop {Name:csvLine.Stop1})
 
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -503,13 +503,13 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/tanjung_pelepas.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s1:Stop {Name:csvLine.Stop1})
 
-MERGE (c3:Chokepoint {name:csvLine.Chokepoint3})
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c3:Chokepoint {Name:csvLine.Chokepoint3})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -527,9 +527,9 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/norfolk_us.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s1:Stop {Name:csvLine.Stop1})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -544,11 +544,11 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/pecem.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s1:Stop {Name:csvLine.Stop1})
 
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -564,12 +564,12 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/jakarta.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
+MERGE (s1:Stop {Name:csvLine.Stop1})
 
-MERGE (c4:Chokepoint {name:csvLine.Chokepoint4})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c4:Chokepoint {Name:csvLine.Chokepoint4})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -586,13 +586,13 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/columbo.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
-MERGE (s2:Stop {name:csvLine.Stop2})
+MERGE (s1:Stop {Name:csvLine.Stop1})
+MERGE (s2:Stop {Name:csvLine.Stop2})
 
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
-MERGE (c5:Chokepoint {name:csvLine.Chokepoint5})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
+MERGE (c5:Chokepoint {Name:csvLine.Chokepoint5})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -610,14 +610,14 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/salalah.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
-MERGE (s2:Stop {name:csvLine.Stop2})
-MERGE (s3:Stop {name:csvLine.Stop3})
+MERGE (s1:Stop {Name:csvLine.Stop1})
+MERGE (s2:Stop {Name:csvLine.Stop2})
+MERGE (s3:Stop {Name:csvLine.Stop3})
 
-MERGE (c1:Chokepoint {name:csvLine.Chokepoint1})
-MERGE (c2:Chokepoint {name:csvLine.Chokepoint2})
+MERGE (c1:Chokepoint {Name:csvLine.Chokepoint1})
+MERGE (c2:Chokepoint {Name:csvLine.Chokepoint2})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -636,12 +636,12 @@ RETURN *
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/haifa.csv?raw=1' AS csvLine
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
-MERGE (s2:Stop {name:csvLine.Stop2})
+MERGE (s1:Stop {Name:csvLine.Stop1})
+MERGE (s2:Stop {Name:csvLine.Stop2})
 
-MERGE (c2:Chokepoint {name:csvLine.Chokepoint2})
+MERGE (c2:Chokepoint {Name:csvLine.Chokepoint2})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -659,10 +659,10 @@ RETURN *
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/b244f0611a0ad4368ce94503f8dcb5dd442350c7/puerto_cortes_honduras.csv?raw=1' AS csvLine
 
 
-MERGE (o:Port {name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
+MERGE (o:Port {Name: csvLine.Origin, Country: csvLine.Country, Port_code: csvLine.port_code, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 
-MERGE (s1:Stop {name:csvLine.Stop1})
-MERGE (s2:Stop {name:csvLine.Stop2})
+MERGE (s1:Stop {Name:csvLine.Stop1})
+MERGE (s2:Stop {Name:csvLine.Stop2})
 
 MERGE (d:Destination {Destination:csvLine.Destination})
 
@@ -691,7 +691,7 @@ RETURN p{.*} AS point
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/582be8d3bf91337cb55864d13e2e7b5eba166e39/supplier_data/gnfr_supplier_list.csv?raw=1' AS csvLine
 
 MERGE (g:GNFR_supplier_site {Site_name: csvLine.sitename, Supplier: csvLine.supplier_name, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, Workers_union_or_committee_present: csvLine.workers_committee_or_union, Percentage_female_workers: csvLine.female_worker_percent})
-MERGE (c:Country {name:csvLine.country})
+MERGE (c:Country {Name:csvLine.country})
 
 MERGE (g)-[:Site_located_in]->(c)
 
@@ -706,7 +706,7 @@ LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/0edc6db02
 
 MERGE (p:GM_production_site {Site_name: csvLine.sitename, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, Workers_union_or_committee_present: csvLine.workers_committee_or_union, Percentage_female_workers: csvLine.female_worker_percent, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 MERGE (o:Port {Name: csvLine.exported_from})
-MERGE (c:Country {name:csvLine.country})
+MERGE (c:Country {Name:csvLine.country})
 
 MERGE (p)-[:Site_located_in]->(c)
 MERGE (p)-[:Exported_from]->(o)
@@ -721,7 +721,7 @@ LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/a87d4288d
 
 MERGE (t:Textile_factory {Factory_name: csvLine.sitename, Supplier_name: csvLine.supplier, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, Workers_union_or_committee_present: csvLine.workers_committee_or_union, Percentage_female_workers: csvLine.female_worker_percent, Migrant_workers:csvLine.migrant_workers, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 MERGE (o:Port {Name: csvLine.exported_from})
-MERGE (c:Country {name:csvLine.country})
+MERGE (c:Country {Name:csvLine.country})
 
 MERGE (t)-[:Factory_located_in]->(c)
 MERGE (t)-[:Exported_from]->(o)
@@ -735,7 +735,7 @@ LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/0edc6db02
 
 MERGE (f:Food_supplier {Site_name: csvLine.sitename, Country: csvLine.country, City: csvLine.city, Product_type: csvLine.product_type, Total_workers: csvLine.total_workers, coords: point({longitude: TOFLOAT(csvLine.longitude), latitude: TOFLOAT(csvLine.latitude)})})
 MERGE (o:Port {Name: csvLine.exported_from})
-MERGE (c:Country {name:csvLine.country})
+MERGE (c:Country {Name:csvLine.country})
 
 MERGE (f)-[:Factory_located_in]->(c)
 MERGE (f)-[:Exported_from]->(o)
@@ -743,8 +743,10 @@ MERGE (f)-[:Exported_from]->(o)
 RETURN *
 
 ---
-#Create indexes
+# Create indexes
 
-CREATE INDEX chokepoint_name FOR (n:Chokepoint) ON (n.Name)
+CREATE INDEX ON :Chokepoint(Name)
 
-CREATE INDEX port_name FOR (n:Port) ON (n.Name)
+CREATE INDEX chokepoint_name FOR (c:Chokepoint) ON (c:Name)
+
+CREATE INDEX employee_p_id FOR (n:employee) ON (n:p_id)
