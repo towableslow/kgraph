@@ -1,4 +1,47 @@
 
+#import risk areas
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d50bf544f02d342944a902b6cf363d15678e4dc4/risk_data/risk_areas.csv?raw=1' AS csvLine
+
+MERGE (c:Chokepoint {name: csvLine.chokepoint, Flood_and_drought_risk: csvLine.flood_and_drought, Storms_risk: csvLine.storms, Haze_and_fog_risk: csvLine.haze_and_fog, Conflict_risk:csvLine.conflict, Terrorist_attack_risk: csvLine.terrorist_attack, Piracy_risk:csvLine.piracy, Cyber_attack_risk: csvLine.cyber_attack, Disrepair_risk:csvLine.disrepair, Unforced_delays_risk:csvLine.unforced_delays })
+MERGE (r:Risk_area {Risk_area: csvLine.storms_risk, Source: csvLine.source, Source_location: csvLine.source_location})
+MERGE (r2:Risk_area {Risk_area: csvLine.haze_risk, Source: csvLine.source, Source_location: csvLine.source_location})
+MERGE (r3:Risk_area {Risk_area: csvLine.terror_risk, Source: csvLine.source, Source_location: csvLine.source_location})
+MERGE (r4:Risk_area {Risk_area: csvLine.conflict_risk, Source: csvLine.source, Source_location: csvLine.source_location})
+MERGE (r5:Risk_area {Risk_area: csvLine.piracy_risk, Source: csvLine.source, Source_location: csvLine.source_location})
+
+MERGE (r)-[:Risk_applies_to]->(c)
+MERGE (r2)-[:Risk_applies_to]->(c)
+MERGE (r3)-[:Risk_applies_to]->(c)
+MERGE (r4)-[:Risk_applies_to]->(c)
+MERGE (r5)-[:Risk_applies_to]->(c)
+
+RETURN *
+
+#import principal risks
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/630e04dd63159e9353ce92558d24fe809393714c/risk_data/principal_risks.csv?raw=1' AS csvLine
+
+MERGE (p:Principal_risk {Full_risk_title: csvLine.full_title, Short_title:csvLine.principal_risk, Reference: csvLine.reference})
+MERGE (c1:Chokepoint {name: csvLine.chokepoint})
+
+MERGE (c1)-[:Factor_influencing_principal_risk]->(p)
+
+
+
+# import supporting_data
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/181ded8dbb0da7b5cd86db3ba17eb341e4b1b0d0/risk_data/supporting_datasets.csv?raw=1' AS csvLine
+
+MERGE (r:Risk_area {Risk_area: csvLine.risk_area})
+MERGE (d:Dataset {Name: csvLine.dataset, Internal_or_external: csvLine.int_ex, Location: csvLine.location, Data_Owner: csvLine.data_owner, Contact_phone_number: csvLine.phone, Contact_email_address: csvLine.email })
+
+MERGE (d)-[:Provides_data_to_monitor]->(r)
+
+RETURN *
+
+---
+
 working code for Bangladesh
 
 LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d3d37b1af062e05b86c8a94fcdbfd0640c7a3cdf/bangladesh.csv?raw=1' AS csvLine
@@ -672,17 +715,6 @@ MERGE (s2)-[:From_Puerto_Cortes_Honduras]->(d)
 
 RETURN *
 
-
-
-MATCH (o:Port_of_origin)
-WHERE distance(o.coords, point({longitude:-87.9482495827955, latitude:15.8468491734727})) <5000
-RETURN o
-
-PROFILE MATCH (p:Point)
-WHERE
-point.distance(p.location, point({latitude: 37.563434, longitude:-122.322255})) < 200
-RETURN p{.*} AS point
-
 =========================================
 =========================================
 
@@ -743,44 +775,6 @@ MERGE (f)-[:Exported_from]->(o)
 RETURN *
 ---
 
-#import principal risks
-
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/630e04dd63159e9353ce92558d24fe809393714c/risk_data/principal_risks.csv?raw=1' AS csvLine
-
-MERGE (p:Principal_risk {Full_risk_title: csvLine.full_title, Short_title:csvLine.principal_risk, Reference: csvLine.reference})
-MERGE (c1:Chokepoint {name: csvLine.chokepoint})
-
-MERGE (c1)-[:Factor_influencing_principal_risk]->(p)
-
-#import risk areas
-
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/d50bf544f02d342944a902b6cf363d15678e4dc4/risk_data/risk_areas.csv?raw=1' AS csvLine
-
-MERGE (c:Chokepoint {name: csvLine.chokepoint, Flood_and_drought_risk: csvLine.flood_and_drought, Storms_risk: csvLine.storms, Haze_and_fog_risk: csvLine.haze_and_fog, Conflict_risk:csvLine.conflict, Terrorist_attack_risk: csvLine.terrorist_attack, Piracy_risk:csvLine.piracy, Cyber_attack_risk: csvLine.cyber_attack, Disrepair_risk:csvLine.disrepair, Unforced_delays_risk:csvLine.unforced_delays })
-MERGE (r:Risk_area {Risk_area: csvLine.storms_risk, Source: csvLine.source, Source_location: csvLine.source_location})
-MERGE (r2:Risk_area {Risk_area: csvLine.haze_risk, Source: csvLine.source, Source_location: csvLine.source_location})
-MERGE (r3:Risk_area {Risk_area: csvLine.terror_risk, Source: csvLine.source, Source_location: csvLine.source_location})
-MERGE (r4:Risk_area {Risk_area: csvLine.conflict_risk, Source: csvLine.source, Source_location: csvLine.source_location})
-MERGE (r5:Risk_area {Risk_area: csvLine.piracy_risk, Source: csvLine.source, Source_location: csvLine.source_location})
-
-MERGE (r)-[:Risk_applies_to]->(c)
-MERGE (r2)-[:Risk_applies_to]->(c)
-MERGE (r3)-[:Risk_applies_to]->(c)
-MERGE (r4)-[:Risk_applies_to]->(c)
-MERGE (r5)-[:Risk_applies_to]->(c)
-
-RETURN *
-
-# import supporting_data
-
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/181ded8dbb0da7b5cd86db3ba17eb341e4b1b0d0/risk_data/supporting_datasets.csv?raw=1' AS csvLine
-
-MERGE (r:Risk_area {Risk_area: csvLine.risk_area})
-MERGE (d:Dataset {Name: csvLine.dataset, Internal_or_external: csvLine.int_ex, Location: csvLine.location, Data_Owner: csvLine.data_owner, Contact_phone_number: csvLine.phone, Contact_email_address: csvLine.email })
-
-MERGE (d)-[:Provides_data_to_monitor]->(r)
-
-RETURN *
 ---
 #Create indexes
 
