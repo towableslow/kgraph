@@ -1,6 +1,6 @@
 risk_area,dataset,int_ex,data_owner,phone,email,location
 Storms (High risk),Met office,External,Joe Bloggs,09912 345678,joebloggs@metoffice.co.uk,https://www.metoffice.gov.uk/weather/world/yemen
 Haze and Fog (Medium risk),Met office,External,Joanne Bloggs,09912 345678,joannebloggs@metoffice.co.uk,https://www.metoffice.gov.uk/weather/world/yemen
-Terrorist_attack (Medium risk),[blank],External,John Smith,09912 345678,johnsmith@global.com,https://globalincidentmap.com/
+Terrorist_attack (Medium risk),Global incident,External,John Smith,09912 345678,johnsmith@global.com,https://globalincidentmap.com/
 Conflict (Medium risk),[blank],External,N/A,[blank],[blank],[blank]
-Piracy (High risk),[blank],External,Jon Smith,09912 345678,jonsmith@icc-ccs.co.org,https://www.icc-ccs.org/piracy-reporting-centre/live-piracy-map
+Piracy (High risk),Piracy reporting centre,External,Jon Smith,09912 345678,jonsmith@icc-ccs.co.org,https://www.icc-ccs.org/piracy-reporting-centre/live-piracy-map
