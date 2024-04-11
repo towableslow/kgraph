@@ -31,12 +31,14 @@ MERGE (c1)-[:Factor_influencing_principal_risk]->(p)
 
 # import supporting_data
 
-LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/181ded8dbb0da7b5cd86db3ba17eb341e4b1b0d0/risk_data/supporting_datasets.csv?raw=1' AS csvLine
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/805cdf9cd73f7b38d836157ef8762fc1ae0c1923/risk_data/supporting_datasets.csv?raw=1' AS csvLine
 
 MERGE (r:Risk_area {Risk_area: csvLine.risk_area})
 MERGE (d:Dataset {Name: csvLine.dataset, Internal_or_external: csvLine.int_ex, Location: csvLine.location, Data_Owner: csvLine.data_owner, Contact_phone_number: csvLine.phone, Contact_email_address: csvLine.email })
+MERGE (do:Data_Owner {Name: csvLine.data_owner, Contact_phone_number: csvLine.phone, Contact_email_address: csvLine.email})
 
 MERGE (d)-[:Provides_data_to_monitor]->(r)
+MERGE (do)-[:Owner_of]->(d)
 
 RETURN *
 
@@ -774,7 +776,15 @@ MERGE (f)-[:Exported_from]->(o)
 
 RETURN *
 ---
+-- create events
 
+MERGE (e1:Event {Type: "Natural disaster - Earthquake", Event_date:datetime("2024-04-12T02:45:00"), City: "Guangzhou", Country: "China", Details: "Magnitude 3.4 earthquake, epicentre in Guangzhou city, China"})
+MERGE (e2:Event {Type: "Pirate hijacking", Event_date:datetime("2024-03-12T16:45:00"), City: "N/A", Country: "Somali", Details: "Hijacking of container vessel off the coast of Somalia /Horn of Africa"})
+MERGE (e3:Event {Type: "Weather warning issued - High winds", Event_date:datetime("2024-04-12T04:00:00"), City: "N/A", Country: "Egypt/Red Sea / Suez Canal", Details: "High winds forecast for morning of 15 April 2024 in area of Suez Canal"})
+
+MERGE (c:Country {name: "China"})
+
+MERGE (e1)-[:Event_took_place_in]->(c)
 ---
 #Create indexes
 
