@@ -791,3 +791,18 @@ MERGE (e1)-[:Event_took_place_in]->(c)
 CREATE INDEX chokepoint_name FOR (n:Chokepoint) ON (n.Name)
 
 CREATE INDEX port_name FOR (n:Port) ON (n.Name)
+
+---
+#Create data for llm - factories impacted by Suez Canal
+
+#code for textile factories
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/towableslow/kgraph/blob/a87d4288d83654617970748a614b0b37170a46ce/supplier_data/tu_factory_list.csv?raw=1' AS csvLine
+
+MERGE (t:Textile_factory {Factory_name: csvLine.sitename})
+MERGE (z:Chokepoint {Name: "Suez Canal"})
+
+
+MERGE (t)-[:Impacted_by_closure_of]->(z)
+
+RETURN *
