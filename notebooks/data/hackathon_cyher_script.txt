@@ -1,0 +1,52 @@
+CREATE (TheMatrix:Movie {title:'The Matrix', released:1999, tagline:'Welcome to the Real World'})
+CREATE (Keanu:Person {name:'Keanu Reeves', born:1964})
+CREATE (Carrie:Person {name:'Carrie-Anne Moss', born:1967})
+CREATE (Laurence:Person {name:'Laurence Fishburne', born:1961})
+CREATE (Hugo:Person {name:'Hugo Weaving', born:1960})
+CREATE (LillyW:Person {name:'Lilly Wachowski', born:1967})
+CREATE (LanaW:Person {name:'Lana Wachowski', born:1965})
+CREATE (JoelS:Person {name:'Joel Silver', born:1952})
+CREATE
+(Keanu)-[:ACTED_IN {roles:['Neo']}]->(TheMatrix),
+(Carrie)-[:ACTED_IN {roles:['Trinity']}]->(TheMatrix),
+(Laurence)-[:ACTED_IN {roles:['Morpheus']}]->(TheMatrix),
+(Hugo)-[:ACTED_IN {roles:['Agent Smith']}]->(TheMatrix),
+(LillyW)-[:DIRECTED]->(TheMatrix),
+(LanaW)-[:DIRECTED]->(TheMatrix),
+(JoelS)-[:PRODUCED]->(TheMatrix)
+
+
+
+CREATE (s:Contact {name:'Shaun C'})
+CREATE (w:Contact {name:'Will E'})
+CREATE (a:Contact {name:'Andy'})
+CREATE (b:Contact {name:'Beatrice'})
+CREATE (c:Contact {name:'Carrie'})
+CREATE (d:Contact {name:'Dan'})
+
+CREATE (ti:Team {name:'Intelligent Analytics and AI'})
+CREATE (ts:Team {name:'Service Now and Process Automation'})
+
+CREATE (sae:Skill {name: 'AI Experimentation'})
+CREATE (sai:Skill {name: 'AI Strategy'})
+CREATE (ss:Skill {name: 'Service Now'})
+
+CREATE (pb:Project {name:'Beans'})
+CREATE (pc:Project {name:'CCEP'})
+
+CREATE (s)-[:Works_in_team]->(ti),
+(a)-[:Works_in_team]->(ti),
+(b)-[:Works_in_team]->(ti),
+(w)-[:Works_in_team]->(ts),
+(c)-[:Works_in_team]->(ts),
+(d)-[:Works_in_team]->(ts),
+(s)-[:Worked_with_client]->(pb),
+(s)-[:Worked_with_client]->(pc),
+(s)-[:Expert_in]->(sae),
+(s)-[:Expert_in]->(sai),
+(w)-[:Expert_in]->(sai),
+(w)-[:Expert_in]->(ss)
+
+
+MATCH (:Contact {name:'Shaun C'})
+RETURN *
